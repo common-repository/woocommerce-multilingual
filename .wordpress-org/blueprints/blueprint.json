@@ -1,0 +1,46 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"preferredVersions": {
+        	"php": "8.0",
+        	"wp": "latest"
+    	},
+	"features": {
+        	"networking": true
+	},
+	"phpExtensionBundles": [
+        	"kitchen-sink"
+	],
+	"steps": [
+	        {
+			"step": "defineWpConfigConsts",
+			"consts": {
+				"OTGS_DISABLE_AUTO_UPDATES": true
+			}
+		},
+		{
+		    	"step": "setSiteOptions",
+    			"options": {
+        			"permalink_structure": "/%year%/%monthnum%/%day%/%postname%/"
+    			}
+		},
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+                                "resource": "wordpress.org/plugins",
+                                "slug": "woocommerce"
+                        }
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "wordpress.org/plugins",
+				"slug": "woocommerce-multilingual"
+			}
+		}
+    	]
+}
